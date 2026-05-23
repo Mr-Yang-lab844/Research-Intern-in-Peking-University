@@ -1,0 +1,199 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+RAG + SAE (Layer 20) - Corrected version using safetensors
+"""
+
+import json
+import torch
+import re
+import numpy as np
+import safetensors.torch
+from transformers import AutoTokenizer, AutoModelForCausalLM
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain_core.documents import Document
+from tqdm import tqdm
+import os
+
+# ================= 配置 =================
+KNOWLEDGE_FILE = "./data/train.jsonl"
+TEST_FILE = "./data/test.jsonl"
+MODEL_PATH = "./models/Llama-3.1-8B-Instruct"
+SAE_WEIGHT_FILE = "./models/Llama-Scope/L20R-8x.safetensors"
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+TOP_K = 3
+EMBED_MODEL_NAME = "BAAI/bge-base-zh-v1.5"
+MAX_NEW_TOKENS = 10
+TEST_SAMPLES = 100
+SAE_TOP_K = 32          # TopK 激活数量（根据模型调整，常见32）
+HIDDEN_DIM = 4096       # Llama-3.1-8B 隐藏维度
+
+# ================= 加载 LLM =================
+print("Loading tokenizer and model...")
+tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
+model = AutoModelForCausalLM.from_pretrained(
+    MODEL_PATH,
+    torch_dtype=torch.float16,
+    device_map="auto"
+)
+model.eval()
+
+# ================= 构建 RAG 知识库 =================
+print(f"Loading knowledge base from {KNOWLEDGE_FILE}...")
+docs = []
+with open(KNOWLEDGE_FILE, "r", encoding="utf-8") as f:
+    for line in f:
+        data = json.loads(line)
+        # 格式: {"input": "问题\n选项", "output": "A", ...}
+        question = data["input"]
+        answer = data["output"]
+        doc_text = f"问题: {question}\n答案: {answer}"
+        docs.append(Document(page_content=doc_text, metadata={}))
+
+print(f"Loaded {len(docs)} documents.")
+if len(docs) > 2000:
+    docs = docs[:2000]
+    print("Truncated to first 2000 for speed.")
+
+print("Loading embedding model...")
+embedding_model = HuggingFaceEmbeddings(
+    model_name=EMBED_MODEL_NAME,
+    model_kwargs={'device': DEVICE}
+)
+print("Building FAISS vector store...")
+vector_store = FAISS.from_documents(docs, embedding_model)
+print("Vector store ready.")
+
+# ================= 加载 SAE =================
+print(f"Loading SAE from {SAE_WEIGHT_FILE}...")
+sae_weights = safetensors.torch.load_file(SAE_WEIGHT_FILE)
+W_enc = sae_weights['encoder.weight'].to(DEVICE).to(torch.float16)
+b_enc = sae_weights['encoder.bias'].to(DEVICE).to(torch.float16)
+# decoder 暂时不需要，但我们加载以备后用
+W_dec = sae_weights['decoder.weight'].to(DEVICE).to(torch.float16)
+b_dec = sae_weights['decoder.bias'].to(DEVICE).to(torch.float16)
+
+feature_dim = W_enc.shape[0]   # 应该是 32768 (32K)
+print(f"SAE: hidden_dim={HIDDEN_DIM}, feature_dim={feature_dim}, TopK={SAE_TOP_K}")
+
+def sae_encode(hidden_state: torch.Tensor) -> torch.Tensor:
+    """
+    hidden_state: [batch, hidden_dim]
+    returns features: [batch, feature_dim]
+    """
+    # 线性变换
+    z = hidden_state @ W_enc.T + b_enc
+    # TopK 激活
+    topk_values, topk_indices = torch.topk(z, SAE_TOP_K, dim=-1)
+    features = torch.zeros_like(z)
+    features.scatter_(-1, topk_indices, topk_values)
+    features = torch.relu(features)
+    return features
+
+# ================= 辅助函数 =================
+def extract_answer_letter(raw_output: str) -> str:
+    match = re.search(r'\b([A-E])\b', raw_output)
+    return match.group(1) if match else ""
+
+def get_last_token_hidden_state(prompt: str, target_layer: int = 20):
+    """
+    Run forward pass without generation, return hidden state of last token at target_layer.
+    """
+    inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+    with torch.no_grad():
+        outputs = model(**inputs, output_hidden_states=True)
+    # hidden_states 是 tuple，索引从0开始（embedding层），第20层对应 index=20
+    layer_hidden = outputs.hidden_states[target_layer]  # [1, seq_len, hid_dim]
+    last_token_hidden = layer_hidden[0, -1, :]          # [hid_dim]
+    return last_token_hidden
+
+def generate_answer(question: str, context: str) -> str:
+    prompt = f"""You are a medical expert. Answer the following multiple-choice question using the provided knowledge.
+
+Knowledge:
+{context}
+
+Question:
+{question}
+
+Instructions:
+- Output only the letter of the correct answer (e.g., "A").
+- Do not include any extra text or explanation.
+
+Answer:"""
+    inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+    with torch.no_grad():
+        outputs = model.generate(
+            **inputs,
+            max_new_tokens=MAX_NEW_TOKENS,
+            do_sample=False
+        )
+    answer = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    if "Answer:" in answer:
+        answer = answer.split("Answer:")[-1].strip()
+    return extract_answer_letter(answer)
+
+# ================= 加载测试集 =================
+print(f"Loading test set from {TEST_FILE}...")
+test_samples = []
+with open(TEST_FILE, "r", encoding="utf-8") as f:
+    for line in f:
+        test_samples.append(json.loads(line))
+if TEST_SAMPLES > 0:
+    test_samples = test_samples[:TEST_SAMPLES]
+print(f"Test samples: {len(test_samples)}")
+
+# ================= 评估 RAG+SAE =================
+print("\nEvaluating RAG + SAE...")
+correct = 0
+total = len(test_samples)
+risk_scores = []
+
+for idx, sample in enumerate(tqdm(test_samples, desc="Processing")):
+    question = sample["input"]
+    true_label = sample["output"]
+
+    # 检索
+    retrieved_docs = vector_store.similarity_search(question, k=TOP_K)
+    context = "\n\n".join([doc.page_content for doc in retrieved_docs])
+
+    # 构造输入 prompt（与生成 prompt 一致，用于提取隐藏状态）
+    prompt_text = f"""You are a medical expert. Answer the following multiple-choice question using the provided knowledge.
+
+Knowledge:
+{context}
+
+Question:
+{question}
+
+Instructions:
+- Output only the letter of the correct answer (e.g., "A").
+- Do not include any extra text or explanation.
+
+Answer:"""
+
+    # 提取第20层最后一个 token 的隐藏状态
+    hidden = get_last_token_hidden_state(prompt_text, target_layer=20)
+    # SAE 编码
+    features = sae_encode(hidden.unsqueeze(0))  # [1, feature_dim]
+    # 计算风险分数：这里用稀疏特征的 L1 范数（可替换为其他度量）
+    risk = features.abs().sum().item()
+    risk_scores.append(risk)
+
+    # 生成答案
+    pred_label = generate_answer(question, context)
+
+    if pred_label == true_label:
+        correct += 1
+    else:
+        if idx < 10:
+            print(f"\n[Error] Q: {question[:80]}... True: {true_label}, Pred: {pred_label}, Risk: {risk:.4f}")
+
+accuracy = correct / total * 100
+avg_risk = np.mean(risk_scores)
+print(f"\n=== Accuracy: {correct}/{total} = {accuracy:.2f}% ===")
+print(f"=== Average Risk Score (L1 of SAE features): {avg_risk:.4f} ===")
+
+# 保存风险分数以便后续分析
+np.save("risk_scores.npy", np.array(risk_scores))
