@@ -1,10 +1,10 @@
-# 医学大模型 SAE 忠实性校验系统
+# 医学 SAE 忠实性校验系统
 
 基于 **Llama-3.1-8B-Instruct** 和 **稀疏自编码器 (Sparse Autoencoder, SAE)** 的医学问答忠实性检测系统。  
 本仓库包含从数据准备、RAG 知识库构建、SAE 特征标定到最终演示的完整代码。
 
 > **2026年5月更新**：新增基于 **HuatuoGPT-o1-8B** 和 **Llama-3.1-8B-UltraMedical** 的实验，并提供了**完全基于多轮对话的最终演示**（`gradio_ultramedical.py`），无需结构化输入，模型自动理解医学问题并给出风险等级。所有自由文本实验已统一使用 **196 条固定划分样本**（开发/测试各98条），结果稳定可复现。
-> 目前核心代码存放在github上面的code_core文件夹，归档代码存放在code_archive文件夹。项目仅展示代码和相关数据集。各类模型敬请自行下载并且存放于固定位置。
+
 ---
 
 ## 项目原理
@@ -144,11 +144,19 @@ python code/gradio_ultramedical.py
 | `choice_ablation_features_ultramedical.py` | 选择题特征数量消融（层18、27） | AUC vs 特征数量 |
 | `choice_ablation_topk_seed_ultra.py` | 选择题检索与随机种子消融（层27，200样本） | AUC 矩阵 |
 
-#### 补充实验
+
+### 🧪 补充实验
 
 | 文件名 | 实验内容 | 输出 |
 |--------|----------|------|
-| `supplementary_experiments.py` | SAE拦截效率、工具调用命中率、随机特征对比、不同嵌入模型对比 | 终端输出 |
+| `supplementary_experiments.py` | **完整补充实验集**（含阈值分析、SAE拦截效率、工具调用命中率、随机特征对比、不同嵌入模型对比、自由文本原始隐藏状态基线） | 终端输出，生成缓存文件用于其他脚本 |
+| `supplementary_experiments(1).py` | **基线对比与多 token 特征探索**（选择题与自由文本的原始隐藏状态、SAE 无标定 L1、随机特征基线，以及各 token 位置 AUC、多 token 组合、衰减系数、选择性位置最大值、新思路探索） | 终端输出，完整复现报告中的基线表格和多 token 融合结果 |
+
+**补充实验运行说明**：
+- 运行 `supplementary_experiments.py` 前需先完成主实验，确保缓存文件（如 `free_weights.npy`、`free_test_feats.npy`）已生成。
+- `supplementary_experiments(1).py` 可独立运行，但依赖相同的缓存文件；它会计算并打印选择题和自由文本的所有基线 AUC（与报告表格一致），并执行多 token 特征探索实验。
+
+> **注意**：文件名中的括号为中文全角字符，在 Linux 系统中可能需要转义或用引号括起来。建议使用 `python "supplementary_experiments(1).py"` 运行。
 
 ---
 
