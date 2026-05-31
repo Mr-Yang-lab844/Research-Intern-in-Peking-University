@@ -83,7 +83,8 @@ pip install huggingface_hub
 
 ## 实验脚本说明
 
-所有 Python 脚本位于 `code/` 目录下。早期实验脚本已移至 `code/archive/`，不影响核心使用。
+在本仓库存储时，核心脚本在code_core文件夹，早期实验脚本已归档在code_archive文件夹。
+建议下载运行时所有 Python 脚本都放于 `code/` 目录下。早期实验脚本可以移至 `code/archive/`，不影响核心使用。
 
 ### 🔥 最终演示脚本
 
