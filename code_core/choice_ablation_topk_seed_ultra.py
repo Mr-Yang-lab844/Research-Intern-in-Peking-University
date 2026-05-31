@@ -1,7 +1,7 @@
-#!/usr/bin/env python3
+9#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Llama-3.1-8B-UltraMedical 选择题 RAG 消融实验：固定特征数=13，改变检索数量(1-10)和随机种子(42,123,2024)
+Llama-3.1-8B-UltraMedical 选择题 RAG 消融实验，改变检索数量(1-10)和随机种子(42,123,2024)
 样本总量翻倍：200条（开发100，测试100）
 模型：Llama-3.1-8B-UltraMedical，知识库：教科书+参考范围+同源训练集
 """
@@ -31,12 +31,12 @@ EMBED_MODEL_NAME = "BAAI/bge-base-zh-v1.5"
 SAE_TOP_K = 32
 MAX_NEW_TOKENS = 10
 DEVICE = "cuda"
-LAYER = 27                     # 选择题最佳层（来自全层扫描）
+LAYER = 29                    # 选择题最佳层（来自全层扫描）
 TOTAL_SAMPLES = 200            # 翻倍
 DEV_SIZE = 100                 # 开发集100
 TEST_SIZE = 100                # 测试集100
-FEATURE_COUNT = 13             # 层27特征数量消融最佳值
-TOP_K_LIST = list(range(1, 11))   # 1~10
+FEATURE_COUNT = 7             # 层29特征数量消融最佳值
+TOP_K_LIST = list(range(5, 11))   # 1~10
 SEED_LIST = [42, 123, 2024]
 
 CACHE_DIR = "./cache/choice_ultra_layer27"

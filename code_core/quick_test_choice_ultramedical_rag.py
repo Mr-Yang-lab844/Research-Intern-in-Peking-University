@@ -4,7 +4,7 @@
 Llama-3.1-8B-UltraMedical 选择题全层扫描（RAG）
 知识库：教科书 + 参考范围 + 同源训练集
 检索 Top-K=3，特征数=10
-开发集 50 条，测试集 50 条
+开发集 50 条，测试集 50 条.后期翻倍为各100条
 """
 
 import json
@@ -31,8 +31,8 @@ TOP_K_RETRIEVAL = 3
 SAE_TOP_K = 32
 DEVICE = "cuda"
 TEST_FILE = "./data/test.jsonl"
-TOTAL_SAMPLES = 100
-DEV_SIZE = 50
+TOTAL_SAMPLES = 200
+DEV_SIZE = 100
 RANDOM_SEED = 42
 MAX_NEW_TOKENS = 200
 LAYERS = list(range(32))

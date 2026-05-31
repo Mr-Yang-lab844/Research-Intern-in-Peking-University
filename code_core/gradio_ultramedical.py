@@ -111,7 +111,7 @@ def generate_response(message, history):
     inputs = tokenizer(prompt, return_tensors="pt").to(DEVICE)
 
     with torch.no_grad():
-        outputs = model.generate(**inputs, max_new_tokens=512, do_sample=False, temperature=0.0)
+        outputs = model.generate(**inputs, max_new_tokens=800, do_sample=False, temperature=0.0)
     full = tokenizer.decode(outputs[0], skip_special_tokens=True)
 
     # 提取 assistant 回复（取最后一个 assistant 块）
@@ -139,7 +139,7 @@ def generate_response(message, history):
 # ================= Gradio 界面 =================
 with gr.Blocks(title="医疗问答助手") as demo:
     gr.Markdown("# 🏥 医疗问答助手 (Llama-3.1-8B-UltraMedical)")
-    gr.Markdown("直接输入任何医学问题，模型会给出专业回答，并提供SAE风险等级（基于问题本身）。")
+    gr.Markdown("输入常见的体检指标或健康问题，模型会尝试给出通俗易懂的解读，并提供SAE风险等级（基于问题内部状态）。请注意：模型对**常规指标**（如血糖、血压、血脂等）解释较为可靠； 对**冷门指标或复杂疾病机理**的回答可能存在错误，仅供参考；本系统不能替代专业医师诊断，如有身体不适请及时就医。")
 
     chatbot = gr.Chatbot(label="对话记录")   # 无需 type 参数，新版自动适配
     msg = gr.Textbox(label="输入消息", lines=2, placeholder="例如：血糖 6.1 mmol/L 正常吗？")

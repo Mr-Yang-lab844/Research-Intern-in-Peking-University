@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Llama-3.1-8B-UltraMedical 选择题 RAG 特征数量消融（层18和层27）
+Llama-3.1-8B-UltraMedical 选择题 RAG 特征数量消融
 知识库：教科书 + 参考范围 + 同源训练集
 检索 Top-K=3
 """
@@ -31,11 +31,11 @@ TOP_K_RETRIEVAL = 3
 SAE_TOP_K = 32
 DEVICE = "cuda"
 TEST_FILE = "./data/test.jsonl"
-TOTAL_SAMPLES = 100
-DEV_SIZE = 50
+TOTAL_SAMPLES = 200
+DEV_SIZE = 100
 RANDOM_SEED = 42
 MAX_NEW_TOKENS = 200
-LAYERS = [18, 27]   # 需要消融的层
+LAYERS = [18, 20,22,24,27,29]   # 需要消融的层
 
 def load_index():
     index_path = "./faiss_choice_ultra"

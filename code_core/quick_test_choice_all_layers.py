@@ -33,8 +33,8 @@ SAE_TOP_K = 32
 MAX_NEW_TOKENS = 10
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 RANDOM_SEED = 42
-TEST_SIZE = 100          # 总样本数
-DEV_SIZE = 50            # 开发集大小
+TEST_SIZE = 200          # 总样本数
+DEV_SIZE = 100            # 开发集大小
 
 # ================= 加载模型和知识库 =================
 print("加载模型...")

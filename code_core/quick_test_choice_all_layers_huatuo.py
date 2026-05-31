@@ -3,7 +3,7 @@
 """
 HuatuoGPT-o1 选择题全层扫描（0-31层）
 - 知识库：教科书 + 参考范围（不含同源训练集）
-- 测试集：CMExam test.jsonl 抽样 100 条，前 50 条开发集，后 50 条测试集
+- 测试集：CMExam test.jsonl 抽样 100 条，前 50 条开发集，后 50 条测试集。 后期改为200条，样本数量翻倍。
 - 每层使用 Top‑10 加权和风险分数，计算 AUC
 """
 
@@ -23,6 +23,7 @@ from tqdm import tqdm
 
 # ================= 配置 =================
 MODEL_PATH = "./models/HuatuoGPT-o1-8B"
+TOKENIZER_PATH = "./models/Llama-3.1-8B-Instruct"   # 使用原始 Llama 的 tokenizer（兼容）
 TEXTBOOK_FILE = "./knowledge/medical_textbook_chunks.jsonl"
 REFERENCE_FILE = "./knowledge/reference_ranges.jsonl"
 TEST_FILE = "./data/test.jsonl"
@@ -31,8 +32,8 @@ TOP_K_RETRIEVAL = 3
 SAE_TOP_K = 32
 DEVICE = "cuda"
 RANDOM_SEED = 42
-TEST_SIZE = 100
-DEV_SIZE = 50
+TEST_SIZE = 200
+DEV_SIZE = 100
 
 # 构建或加载知识库索引（教科书+参考范围，不含同源训练集）
 def get_choice_index():
@@ -65,7 +66,8 @@ def get_choice_index():
         return vector_store
 
 print("加载 HuatuoGPT-o1-8B 模型...")
-tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
+# 使用兼容的 tokenizer
+tokenizer = AutoTokenizer.from_pretrained(TOKENIZER_PATH)
 model = AutoModelForCausalLM.from_pretrained(MODEL_PATH, torch_dtype=torch.float16, device_map="auto")
 model.eval()
 
@@ -89,7 +91,6 @@ def sae_encode(hidden, W_enc, b_enc):
     return features
 
 def get_pre_generation_feature(question, knowledge, layer, W_enc, b_enc):
-    # 使用与原始 Llama 相同的 prompt 格式（英文，要求输出字母）
     prompt = f"""You are a medical expert. Answer the following multiple-choice question using the provided knowledge.
 
 Knowledge:
@@ -111,7 +112,6 @@ Answer:"""
     return features
 
 def generate_answer(question, knowledge):
-    # 用于获取正确答案标签（虽然模型准确率可能低，但我们需要真实正确性）
     prompt = f"""You are a medical expert. Answer the following multiple-choice question using the provided knowledge.
 
 Knowledge:

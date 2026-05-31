@@ -32,11 +32,11 @@ TOP_K_RETRIEVAL = 3
 SAE_TOP_K = 32
 DEVICE = "cuda"
 RANDOM_SEED = 42
-TOTAL_SAMPLES = 100
-DEV_SIZE = 50
+TOTAL_SAMPLES = 200
+DEV_SIZE = 100
 
 # 待测试的层列表
-LAYERS = [20, 22, 24, 25, 27]   # 可选，你可以根据需要增减
+LAYERS = [18, 19, 20, 22, 24,28]   # 可选，你可以根据需要增减
 
 # 特征数量范围
 FEATURE_COUNTS = list(range(1, 31))

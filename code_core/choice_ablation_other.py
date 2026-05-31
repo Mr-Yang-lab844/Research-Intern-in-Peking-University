@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-原始 Llama-3.1-8B-Instruct 选择题层22消融实验：固定特征数=10，改变检索数量(1-10)和随机种子(42,123,2024)
-样本总量翻倍：200条（开发100，测试100）
+原始 Llama-3.1-8B-Instruct 选择题层24消融实验：固定特征数=3，改变检索数量(1-10)和随机种子(42,123,2024)
+样本总量：200条（开发100，测试100）
 模型：Llama-3.1-8B-Instruct，知识库：教科书+参考范围（不含同源训练集）
+无缓存，每次运行重新计算。
 """
 
 import json
@@ -15,10 +16,8 @@ import safetensors.torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
-from langchain_core.documents import Document
 from sklearn.metrics import roc_auc_score
 from tqdm import tqdm
-import os
 
 # ================= 配置 =================
 MODEL_PATH = "./models/Llama-3.1-8B-Instruct"
@@ -29,17 +28,13 @@ EMBED_MODEL_NAME = "BAAI/bge-base-zh-v1.5"
 SAE_TOP_K = 32
 MAX_NEW_TOKENS = 10
 DEVICE = "cuda"
-LAYER = 22
-TOTAL_SAMPLES = 200            # 翻倍
-DEV_SIZE = 100                 # 开发集100
-TEST_SIZE = 100                # 测试集100
-FEATURE_COUNT = 10             # 固定特征数
-TOP_K_LIST = list(range(9, 11))   # 默认1~10，可以根据实际实验调整数值
+LAYER = 24 
+TOTAL_SAMPLES = 200
+DEV_SIZE = 100
+TEST_SIZE = 100
+FEATURE_COUNT = 3
+TOP_K_LIST = list(range(1, 11))   # 检索数量1~10
 SEED_LIST = [42, 123, 2024]
-
-# 缓存目录
-CACHE_DIR = "./cache/choice_llama_layer22"
-os.makedirs(CACHE_DIR, exist_ok=True)
 
 print("加载模型和知识库...")
 tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
@@ -115,14 +110,7 @@ print(f"总样本数: {len(all_samples)}")
 results = {}
 for top_k in TOP_K_LIST:
     for seed in SEED_LIST:
-        cache_file = os.path.join(CACHE_DIR, f"topk_{top_k}_seed_{seed}_cache.npz")
-        if os.path.exists(cache_file):
-            print(f"加载缓存: {cache_file}")
-            data = np.load(cache_file, allow_pickle=True)
-            auc = data['auc']
-            results[(top_k, seed)] = auc
-            print(f"TOP_K={top_k}, seed={seed:4d} -> AUC = {auc:.4f} (cached)")
-            continue
+        print(f"\n--- TOP_K={top_k}, seed={seed} ---")
 
         random.seed(seed)
         samples = random.sample(all_samples, TOTAL_SAMPLES)
@@ -131,7 +119,7 @@ for top_k in TOP_K_LIST:
 
         # 开发集特征和标签
         dev_features, dev_labels = [], []
-        for s in tqdm(dev_samples, desc=f"TOP_K={top_k}, seed={seed} (dev)"):
+        for s in tqdm(dev_samples, desc="开发集"):
             q = s["input"]
             true = s["output"]
             retrieved = vector_store.similarity_search(q, k=top_k)
@@ -144,13 +132,14 @@ for top_k in TOP_K_LIST:
         dev_features = np.array(dev_features)
         dev_labels = np.array(dev_labels)
 
-        # 特征选择 (t-statistic)
         correct_mask = (dev_labels == 0)
         error_mask = (dev_labels == 1)
         if correct_mask.sum() == 0 or error_mask.sum() == 0:
-            print(f"警告: 开发集中正负样本不足, 跳过")
+            print(f"警告: 开发集中正负样本不足, 跳过 (正确:{correct_mask.sum()}, 错误:{error_mask.sum()})")
+            results[(top_k, seed)] = 0.5
             continue
 
+        # 特征选择 (t-statistic)
         mean_c = dev_features[correct_mask].mean(axis=0)
         mean_e = dev_features[error_mask].mean(axis=0)
         std_c = dev_features[correct_mask].std(axis=0) + 1e-8
@@ -163,7 +152,7 @@ for top_k in TOP_K_LIST:
 
         # 测试集评估
         test_features, test_labels = [], []
-        for s in tqdm(test_samples, desc=f"TOP_K={top_k}, seed={seed} (test)", leave=False):
+        for s in tqdm(test_samples, desc="测试集", leave=False):
             q = s["input"]
             true = s["output"]
             retrieved = vector_store.similarity_search(q, k=top_k)
@@ -178,20 +167,10 @@ for top_k in TOP_K_LIST:
         risks = np.sum(test_features[:, top_indices] * top_weights, axis=1)
         auc = roc_auc_score(test_true_error, risks)
 
-        # 保存缓存
-        np.savez(cache_file,
-                 dev_features=dev_features,
-                 dev_labels=dev_labels,
-                 test_features=test_features,
-                 test_labels=test_labels,
-                 test_true_error=test_true_error,
-                 top_indices=top_indices,
-                 top_weights=top_weights,
-                 auc=auc)
         results[(top_k, seed)] = auc
-        print(f"TOP_K={top_k}, seed={seed:4d} -> AUC = {auc:.4f} (saved)")
+        print(f"TOP_K={top_k}, seed={seed} -> AUC = {auc:.4f}")
 
-print("\n=== 消融实验汇总 (原始 Llama, 层22, 特征数=10, 样本量=200) ===")
+print("\n=== 消融实验汇总 (原始 Llama, 层24, 特征数=3, 样本量=200) ===")
 print("TOP_K\\Seed", end="")
 for seed in SEED_LIST:
     print(f"\t{seed}", end="")
