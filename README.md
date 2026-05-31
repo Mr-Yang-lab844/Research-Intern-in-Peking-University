@@ -107,13 +107,13 @@ python code/gradio_ultramedical.py
 
 | 文件名 | 实验内容 | 输出 |
 |--------|----------|------|
-| `quick_test_choice_all_layers.py` | 选择题全层扫描（0‑31层），Top‑10 特征加权和 | 各层 AUC 表格 |
+| `quick_test_choice_all_layers.py` | 选择题全层扫描（0‑31层，200条），Top‑10 特征加权和 | 各层 AUC 表格 |
 | `choice_ablation_features.py` | 选择题（层20/22）特征数量消融（1‑50） | AUC vs 特征数量 |
 | `choice_ablation_other.py` | 选择题检索数量 (1,3,5,7) 与随机种子消融 | AUC 矩阵 |
 | `quick_test_all_layers_enhanced.py` | 自由文本全层扫描（增强知识库，98条，已归档但保留脚本） | 各层 AUC 表格 |
-| `quick_test_all_layers_llama_rag.py` | **自由文本 RAG 全层扫描（196条固定划分）** | 各层 AUC 表格 |
+| `quick_test_all_layers_llama_rag.py` | 自由文本 RAG 全层扫描（196条固定划分） | 各层 AUC 表格 |
 | `free_text_ablation_advanced.py` | 自由文本 RAG 特征数量消融（层13/16，196条） | AUC vs 特征数量 |
-| `free_text_ablation_topk.py` | **自由文本 RAG 检索数量消融**（默认层16、特征25；可通过修改代码中的 `LAYER` 和 `TOP_FEATURES` 参数用于层13等其他层） | AUC vs Top‑K |
+| `free_text_ablation_topk.py` | 自由文本 RAG 检索数量消融（默认层16、特征25；可通过修改代码中的 `LAYER` 和 `TOP_FEATURES` 参数用于层13等其他层） | AUC vs Top‑K |
 | `analyze_risk_distribution.py` | 统计风险分数分布（均值、分位数等） | 终端输出 |
 | `choice_accuracy_boost.py` | 选择题准确率优化（不同检索数量，加入同源训练集） | 准确率 |
 
@@ -123,7 +123,7 @@ python code/gradio_ultramedical.py
 |--------|----------|------|
 | `quick_test_all_layers_huatuo_free.py` | 自由文本 RAG 全层扫描（196条固定划分） | 各层 AUC 表格 |
 | `quick_test_all_layers_huatuo_norag_free.py` | 自由文本无 RAG 全层扫描（自然语言 prompt，196条） | 各层 AUC 表格 |
-| `quick_test_choice_all_layers_huatuo.py` | 选择题 RAG 全层扫描（100条） | 各层 AUC 表格 |
+| `quick_test_choice_all_layers_huatuo.py` | 选择题 RAG 全层扫描（200条） | 各层 AUC 表格 |
 | `free_text_ablation_huatuo_layers.py` | 自由文本 RAG 特征数量消融（层3、6、27，196条） | AUC vs 特征数量 |
 | `free_text_ablation_topk_seed_huatuo.py` | 自由文本 RAG 检索数量消融（层27，固定特征10） | AUC vs Top‑K |
 | `free_text_layer14_ablation_norag.py` | 自由文本无 RAG 特征数量消融（层14，196条） | AUC vs 特征数量 |
@@ -136,7 +136,7 @@ python code/gradio_ultramedical.py
 |--------|----------|------|
 | `ultra_free_full_layer_scan.py` | 自由文本无 RAG + 有 RAG 全层扫描（196条） | 各层 AUC 表格 |
 | `quick_test_free_ultramedical_norag.py` | 自由文本无 RAG 全层扫描（196条） | 各层 AUC 表格 |
-| `quick_test_choice_ultramedical_rag.py` | **选择题 RAG 全层扫描（100样本）** | 各层 AUC 表格 |
+| `quick_test_choice_ultramedical_rag.py` | 选择题 RAG 全层扫描（200样本） | 各层 AUC 表格 |
 | `free_text_ablation_ultramedical_features.py` | 自由文本无 RAG 特征数量消融（层15，196条） | AUC vs 特征数量 |
 | `free_text_ablation_ultra_norag_layer15.py` | 同（层15无RAG） | — |
 | `free_text_ablation_ultra_rag_layer10.py` | 自由文本 RAG 特征数量消融（层10，196条） | AUC vs 特征数量 |
