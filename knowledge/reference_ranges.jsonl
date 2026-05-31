@@ -1,0 +1,54 @@
+{"id": "BASE_001", "test_name": "身高", "unit": "cm", "normal_range": "男性：165-185；女性：155-175", "source": "中国居民营养与慢性病状况报告", "description": "成年人身高范围，受遗传、营养等因素影响较大，无严格病理界限。", "low_status": "矮小症参考", "high_status": "正常高值"}
+{"id": "BASE_002", "test_name": "体重", "unit": "kg", "normal_range": "根据身高和BMI综合评估，无固定绝对范围", "source": "个体化评估", "description": "健康体重需结合BMI判断。通常成年人BMI在18.5-23.9 kg/m²对应体重为健康。", "low_status": "偏瘦", "high_status": "超重或肥胖"}
+{"id": "BASE_003", "test_name": "体重指数 (BMI)", "unit": "kg/m²", "normal_range": "18.5-23.9", "source": "中国行业标准", "description": "体重（kg）除以身高（m）的平方，评价营养状况和肥胖程度的常用指标。", "low_status": "偏瘦（<18.5）", "high_status": "超重（24-27.9）或肥胖（≥28）"}
+{"id": "BASE_003_ELDER", "test_name": "体重指数 (BMI) 老年人", "unit": "kg/m²", "normal_range": "20-26.9", "source": "老年医学共识", "description": "65岁以上老年人BMI稍高可降低营养不良和骨质疏松风险，建议20-26.9。", "low_status": "偏瘦", "high_status": "超重/肥胖"}
+{"id": "BASE_004", "test_name": "肺活量 (VC)", "unit": "L", "normal_range": "男性：3.5-4.5；女性：2.5-3.5", "source": "临床肺功能指南", "description": "一次尽力吸气后尽力呼出的气体总量，反映肺通气功能。随年龄、身高、性别变化较大。", "low_status": "限制性通气障碍可能", "high_status": "正常"}
+{"id": "BASE_004_M", "test_name": "肺活量 (VC) 男性", "unit": "L", "normal_range": "3.5-4.5", "source": "中国肺功能参考值", "description": "成年男性参考值，实际个体差异大，需结合预计值百分比（>80%预计值正常）。", "low_status": "减低", "high_status": "正常"}
+{"id": "BASE_004_F", "test_name": "肺活量 (VC) 女性", "unit": "L", "normal_range": "2.5-3.5", "source": "中国肺功能参考值", "description": "成年女性参考值，实际需结合年龄、身高校正。", "low_status": "减低", "high_status": "正常"}
+{"id": "BASE_005", "test_name": "第一秒用力呼气容积 (FEV1)", "unit": "L", "normal_range": ">80%预计值", "source": "肺功能指南", "description": "评估气道阻塞的敏感指标。实测值占预计值百分比>80%为正常。", "low_status": "可能阻塞", "high_status": "正常"}
+{"id": "BASE_006", "test_name": "用力肺活量 (FVC)", "unit": "L", "normal_range": ">80%预计值", "source": "肺功能指南", "description": "最大用力呼气总量，实测值占预计值百分比>80%为正常。", "low_status": "限制或阻塞", "high_status": "正常"}
+{"id": "BASE_007", "test_name": "FEV1/FVC", "unit": "%", "normal_range": ">70%", "source": "GOLD指南", "description": "第一秒用力呼气容积与用力肺活量的比值，判断阻塞性通气障碍的核心指标。", "low_status": "提示阻塞（<70%）", "high_status": "正常"}
+{"id": "BASE_008", "test_name": "血压 (收缩压)", "unit": "mmHg", "normal_range": "90-119", "source": "中国高血压防治指南", "description": "理想血压范围。120-139为正常高值，≥140为高血压。", "low_status": "低血压（<90）", "high_status": "正常高值或高血压"}
+{"id": "BASE_009", "test_name": "血压 (舒张压)", "unit": "mmHg", "normal_range": "60-79", "source": "中国高血压防治指南", "description": "理想舒张压范围。80-89为正常高值，≥90为高血压。", "low_status": "低血压（<60）", "high_status": "正常高值或高血压"}
+{"id": "BASE_010", "test_name": "心率 (静息)", "unit": "次/分", "normal_range": "60-100", "source": "临床常规", "description": "成年人安静状态下正常心跳次数。长期锻炼者可低于60。", "low_status": "心动过缓", "high_status": "心动过速"}
+{"id": "BASE_011", "test_name": "体温 (腋下)", "unit": "℃", "normal_range": "36.0-37.0", "source": "临床常规", "description": "正常体温范围，下午略高。超过37.3℃为发热。", "low_status": "低体温", "high_status": "发热"}
+{"id": "BASE_012", "test_name": "呼吸频率 (静息)", "unit": "次/分", "normal_range": "12-20", "source": "临床常规", "description": "成年人安静状态下正常呼吸频率。", "low_status": "呼吸过缓", "high_status": "呼吸过速"}
+{"id": "BASE_013", "test_name": "腰围", "unit": "cm", "normal_range": "男性<85；女性<80", "source": "中国成人超重和肥胖预防控制指南", "description": "评估中心性肥胖的重要指标，超过标准提示代谢风险增加。", "low_status": "", "high_status": "中心性肥胖"}
+{"id": "BASE_014", "test_name": "腰臀比 (WHR)", "unit": "", "normal_range": "男性<0.9；女性<0.85", "source": "WHO", "description": "腰围与臀围的比值，反映脂肪分布。", "low_status": "", "high_status": "腹部肥胖"}
+{"id": "TEST_001", "test_name": "空腹血糖", "unit": "mmol/L", "normal_range": "3.9-6.1", "source": "行业标准/常规参考", "description": "成年人空腹状态下血糖的正常参考区间。", "low_status": "偏低", "high_status": "偏高"}
+{"id": "TEST_001_ALT", "test_name": "空腹血糖 (健康优化标准)", "unit": "mmol/L", "normal_range": "4.4-5.6", "source": "2025专家共识", "description": "更严格的健康成年人理想范围，用于早期风险预警。", "low_status": "偏低", "high_status": "偏高"}
+{"id": "TEST_002", "test_name": "餐后2小时血糖", "unit": "mmol/L", "normal_range": "<7.8", "source": "行业标准", "description": "餐后2小时血糖的正常参考值。", "low_status": "", "high_status": "偏高"}
+{"id": "TEST_003", "test_name": "糖化血红蛋白", "unit": "%", "normal_range": "4.0-5.7", "source": "2025专家共识", "description": "反映过去2-3个月平均血糖水平的金标准。", "low_status": "", "high_status": "偏高"}
+{"id": "TEST_004", "test_name": "总胆固醇 (TC)", "unit": "mmol/L", "normal_range": "<5.2", "source": "行业标准", "description": "血液中所有胆固醇的总和，主要心血管风险指标之一。", "low_status": "", "high_status": "偏高"}
+{"id": "TEST_005", "test_name": "甘油三酯 (TG)", "unit": "mmol/L", "normal_range": "<1.7", "source": "行业标准", "description": "血脂的一种，高水平是心血管疾病的危险因素。", "low_status": "", "high_status": "偏高"}
+{"id": "TEST_006", "test_name": "低密度脂蛋白胆固醇 (LDL-C)", "unit": "mmol/L", "normal_range": "<3.4", "source": "行业标准", "description": "俗称‘坏胆固醇’，是动脉粥样硬化的主要致病因素。", "low_status": "", "high_status": "偏高"}
+{"id": "TEST_006_ALT", "test_name": "低密度脂蛋白胆固醇 (LDL-C) 高危目标", "unit": "mmol/L", "normal_range": "<2.6", "source": "专家共识", "description": "针对高血压、糖尿病等心血管病高危人群的控制目标。", "low_status": "", "high_status": "偏高"}
+{"id": "TEST_007", "test_name": "高密度脂蛋白胆固醇 (HDL-C)", "unit": "mmol/L", "normal_range": ">1.0", "source": "行业标准", "description": "成年男性的‘好胆固醇’参考值，低于标准增加心血管风险。", "low_status": "偏低", "high_status": ""}
+{"id": "TEST_007_F", "test_name": "高密度脂蛋白胆固醇 (HDL-C)", "unit": "mmol/L", "normal_range": ">1.3", "source": "行业标准", "description": "成年女性的‘好胆固醇’参考值，低于标准增加心血管风险。", "low_status": "偏低", "high_status": ""}
+{"id": "TEST_008", "test_name": "谷丙转氨酶 (ALT)", "unit": "U/L", "normal_range": "7-40", "source": "WS/T 404.1-2012", "description": "反映肝细胞损伤最敏感的指标之一。", "low_status": "", "high_status": "偏高"}
+{"id": "TEST_009", "test_name": "谷草转氨酶 (AST)", "unit": "U/L", "normal_range": "13-35", "source": "WS/T 404.1-2012", "description": "存在于肝、心肌等细胞中，升高提示细胞损伤。", "low_status": "", "high_status": "偏高"}
+{"id": "TEST_010", "test_name": "总胆红素 (TBIL)", "unit": "μmol/L", "normal_range": "3.4-20.5", "source": "临床常规", "description": "胆红素代谢的总和，用于评估黄疸。", "low_status": "", "high_status": "偏高"}
+{"id": "TEST_011", "test_name": "白蛋白 (ALB)", "unit": "g/L", "normal_range": "35-55", "source": "WS/T 404.2-2012", "description": "反映肝脏合成功能的重要指标。", "low_status": "偏低", "high_status": ""}
+{"id": "TEST_012", "test_name": "血肌酐 (Cr)", "unit": "μmol/L", "normal_range": "44-106", "source": "行业标准", "description": "评估肾功能滤过功能的核心指标，具体范围受性别影响。", "low_status": "偏低", "high_status": "偏高"}
+{"id": "TEST_012_M", "test_name": "血肌酐 (Cr) 男性", "unit": "μmol/L", "normal_range": "53-106", "source": "行业标准/临床常规", "description": "男性血肌酐参考区间上限略高，反映肌肉代谢产物。", "low_status": "偏低", "high_status": "偏高"}
+{"id": "TEST_012_F", "test_name": "血肌酐 (Cr) 女性", "unit": "μmol/L", "normal_range": "44-97", "source": "行业标准/临床常规", "description": "女性血肌酐参考区间。", "low_status": "偏低", "high_status": "偏高"}
+{"id": "TEST_013", "test_name": "尿素氮 (BUN)", "unit": "mmol/L", "normal_range": "2.9-8.2", "source": "临床常规", "description": "肾功能检查辅助指标，受饮食和蛋白质代谢影响。", "low_status": "", "high_status": "偏高"}
+{"id": "TEST_014", "test_name": "尿酸 (UA)", "unit": "μmol/L", "normal_range": "155-428", "source": "临床常规", "description": "嘌呤代谢终产物，升高是痛风和肾损伤的风险因素。", "low_status": "", "high_status": "偏高"}
+{"id": "TEST_014_M", "test_name": "尿酸 (UA) 男性", "unit": "μmol/L", "normal_range": "208-428", "source": "临床常规", "description": "男性尿酸参考区间。", "low_status": "", "high_status": "偏高"}
+{"id": "TEST_014_F", "test_name": "尿酸 (UA) 女性", "unit": "μmol/L", "normal_range": "155-357", "source": "临床常规", "description": "女性尿酸参考区间。", "low_status": "", "high_status": "偏高"}
+{"id": "TEST_015", "test_name": "糖化血红蛋白 (HbA1c)", "unit": "%", "normal_range": "4-6", "source": "行业标准", "description": "反映过去2-3个月平均血糖水平。", "low_status": "", "high_status": "偏高"}
+{"id": "TEST_016", "test_name": "C反应蛋白 (CRP)", "unit": "mg/L", "normal_range": "<10", "source": "临床常规", "description": "急性炎症反应的敏感标志物。", "low_status": "", "high_status": "偏高"}
+{"id": "TEST_017", "test_name": "超敏C反应蛋白 (hs-CRP)", "unit": "mg/L", "normal_range": "<2.0", "source": "临床指南", "description": "更敏感的炎症指标，用于评估心血管疾病风险。", "low_status": "", "high_status": "偏高"}
+{"id": "TEST_018", "test_name": "血红蛋白 (Hb)", "unit": "g/L", "normal_range": "110-175", "source": "临床常规", "description": "判断贫血的常用指标，范围因性别和年龄而异。", "low_status": "偏低", "high_status": "偏高"}
+{"id": "TEST_018_M", "test_name": "血红蛋白 (Hb) 男性", "unit": "g/L", "normal_range": "120-160", "source": "临床常规", "description": "成年男性血红蛋白参考区间。", "low_status": "偏低", "high_status": "偏高"}
+{"id": "TEST_018_F", "test_name": "血红蛋白 (Hb) 女性", "unit": "g/L", "normal_range": "110-150", "source": "临床常规", "description": "成年女性血红蛋白参考区间。", "low_status": "偏低", "high_status": "偏高"}
+{"id": "TEST_019", "test_name": "血小板计数 (PLT)", "unit": "x10^9/L", "normal_range": "100-350", "source": "行业标准", "description": "评估凝血功能的核心指标。", "low_status": "偏低", "high_status": "偏高"}
+{"id": "TEST_020", "test_name": "白细胞计数 (WBC)", "unit": "x10^9/L", "normal_range": "3.5-9.5", "source": "行业标准", "description": "反映免疫系统状态的指标，升高常见于感染。", "low_status": "偏低", "high_status": "偏高"}
+{"id": "TEST_021", "test_name": "碱性磷酸酶 (ALP)", "unit": "U/L", "normal_range": "45-115", "source": "WS/T 404.1-2012", "description": "反映肝胆系统和骨骼代谢状况的指标。", "low_status": "", "high_status": "偏高"}
+{"id": "TEST_022", "test_name": "γ-谷氨酰转肽酶 (GGT)", "unit": "U/L", "normal_range": "8-50", "source": "临床常规", "description": "肝胆疾病和酒精性肝损伤的敏感指标。", "low_status": "", "high_status": "偏高"}
+{"id": "TEST_023", "test_name": "钾离子 (K)", "unit": "mmol/L", "normal_range": "3.5-5.1", "source": "WS/T 404.3-2012", "description": "维持神经肌肉功能的重要电解质。", "low_status": "偏低", "high_status": "偏高"}
+{"id": "TEST_024", "test_name": "钠离子 (Na)", "unit": "mmol/L", "normal_range": "135-145", "source": "WS/T 404.3-2012", "description": "调节体液平衡的核心电解质。", "low_status": "偏低", "high_status": "偏高"}
+{"id": "TEST_025", "test_name": "载脂蛋白B (ApoB)", "unit": "g/L", "normal_range": "0.6-1.14", "source": "专家共识", "description": "‘坏胆固醇’的载体蛋白，能更精准预警心血管风险。", "low_status": "", "high_status": "偏高"}
+{"id": "TEST_026", "test_name": "游离三碘甲状腺原氨酸 (FT3)", "unit": "pmol/L", "normal_range": "3.5-6.5", "source": "WS/T 404.10-2022", "description": "评估甲状腺功能的敏感指标之一。", "low_status": "", "high_status": ""}
+{"id": "TEST_027", "test_name": "游离甲状腺素 (FT4)", "unit": "pmol/L", "normal_range": "11.5-22.7", "source": "WS/T 404.10-2022", "description": "评估甲状腺功能的核心指标之一。", "low_status": "", "high_status": ""}
+{"id": "TEST_028", "test_name": "促甲状腺激素 (TSH)", "unit": "mIU/L", "normal_range": "0.55-4.78", "source": "WS/T 404.10-2022", "description": "反映甲状腺功能最敏感的指标。", "low_status": "偏低", "high_status": "偏高"}
