@@ -1,6 +1,7 @@
-# 医学 SAE 忠实性校验系统
+```markdown
+# 面向事实性幻觉检测的医学报告解读助手
 
-基于 **Llama-3.1-8B-Instruct** 和 **稀疏自编码器 (Sparse Autoencoder, SAE)** 的医学问答忠实性检测系统。  
+基于 **Llama-3.1-8B-Instruct** 和 **稀疏自编码器 (Sparse Autoencoder, SAE)** 的医学问答事实性幻觉检测系统。  
 本仓库包含从数据准备、RAG 知识库构建、SAE 特征标定到最终演示的完整代码。
 
 > **2026年5月更新**：新增基于 **HuatuoGPT-o1-8B** 和 **Llama-3.1-8B-UltraMedical** 的实验，并提供了**完全基于多轮对话的最终演示**（`gradio_ultramedical.py`），无需结构化输入，模型自动理解医学问题并给出风险等级。所有自由文本实验已统一使用 **196 条固定划分样本**（开发/测试各98条），结果稳定可复现。
@@ -12,7 +13,7 @@
 1. **RAG 检索**：使用 FAISS 向量库 + 中文嵌入模型 (`BAAI/bge-base-zh-v1.5`) 从医学知识库中检索相关段落。
 2. **LLM 生成**：基座模型根据检索到的知识生成答案（选择题字母）或解读（自由文本）。
 3. **SAE 特征提取**：在模型生成过程中，捕获特定层最后一个 token 的隐藏状态，通过预训练 TopK SAE 编码为稀疏特征。
-4. **特征标定与风险分数**：利用开发集（正确/错误样本）计算每个 SAE 特征的区分度（t‑statistic），选出 Top‑K 特征并加权求和，得到风险分数。分数越高表示答案越可能不忠实。最终根据统计分位数将风险分为低/中/高三档。
+4. **特征标定与风险分数**：利用开发集（正确/错误样本）计算每个 SAE 特征的区分度（t‑statistic），选出 Top‑K 特征并加权求和，得到风险分数。分数越高表示答案越可能产生事实性幻觉。最终根据统计分位数将风险分为低/中/高三档。
 
 ---
 
@@ -83,8 +84,8 @@ pip install huggingface_hub
 
 ## 实验脚本说明
 
-在本仓库存储时，核心脚本在code_core文件夹，早期实验脚本已归档在code_archive文件夹。
-建议下载运行时所有 Python 脚本都放于 `code/` 目录下。早期实验脚本可以移至 `code/archive/`，不影响核心使用。
+在本仓库存储时，核心脚本在 `code_core` 文件夹，早期实验脚本已归档在 `code_archive` 文件夹。  
+建议下载运行时将所有 Python 脚本放于 `code/` 目录下。早期实验脚本可以移至 `code/archive/`，不影响核心使用。
 
 ### 🔥 最终演示脚本
 
@@ -145,7 +146,6 @@ python code/gradio_ultramedical.py
 | `choice_ablation_features_ultramedical.py` | 选择题特征数量消融（层18、27） | AUC vs 特征数量 |
 | `choice_ablation_topk_seed_ultra.py` | 选择题检索与随机种子消融（层27，200样本） | AUC 矩阵 |
 
-
 ### 🧪 补充实验
 
 | 文件名 | 实验内容 | 输出 |
@@ -163,40 +163,7 @@ python code/gradio_ultramedical.py
 
 ### 🧪 辅助/历史脚本
 
-早期实验、临时调试脚本及过渡演示已移至 `code/archive/`，不影响主流程。以下是各脚本的原始用途说明，可供参考：
-
-| 脚本名称 | 用途 |
-|----------|------|
-| `rag_baseline.py` | 早期 RAG 基线（英文 MedXpertQA） |
-| `rag_baseline_chinese.py` | 中文 RAG 基线（CMExam） |
-| `zero_shot_chinese.py` | 零样本中文选择题对照 |
-| `diagnose_rag_simple.py` | 简单诊断 RAG 检索效果 |
-| `diagnose_rag.py` | 详细诊断 RAG 检索问题 |
-| `diagnose_choice.py` | 诊断选择题答案提取 |
-| `rag_huatuo.py` | 使用华佗知识库的早期 RAG 实验 |
-| `report_rag_with_huatuo.py` | 华佗知识库自由文本解读原型 |
-| `merge_all_knowledge.py` | 合并多个知识库文件的工具脚本 |
-| `test_combined_kb.py` | 测试合并知识库的选择题准确率 |
-| `test_combined_with_sae.py` | 测试合并知识库 + SAE 风险计算 |
-| `test_textbook_rag.py` | 单独测试教科书知识库 RAG |
-| `rag_full_knowledge_sae.py` | 第一版 RAG+SAE（全量知识库） |
-| `rag_with_sae.py` | 早期 RAG+SAE 集成实验 |
-| `rag_sae_attemp_with_olddata.py` | 选择题最终评估（旧版数据） |
-| `rag_sae_analyze.py` | 分析 SAE 特征与风险分数关系 |
-| `sae_feature_attribution.py` | 选择题特征筛选（加权和版本） |
-| `run_rag_sae_pipeline.py` | 自由文本完整 pipeline（含逻辑回归） |
-| `free_text_ablation.py` | 自由文本特征数量消融（49+49 样本） |
-| `free_text_ablation_topk_seed.py` | 自由文本检索与随机种子消融（错误方法） |
-| `free_text_ablation_topk_seed_enhanced.py` | 早期自由文本检索数量消融（层13，特征21），功能已被 `free_text_ablation_topk.py` 通过修改参数覆盖 |
-| `quick_test_all_layers_huatuo_free_rag_norag.py` | HuatuoGPT‑o1 同时跑 RAG 和无 RAG 的整合脚本（已被拆分） |
-| `choice_ablation_topk_seed_huatuo.py` | HuatuoGPT‑o1 选择题检索与种子消融（100 样本旧版） |
-| `quick_test_choice_ultramedical_norag.py` | UltraMedical 选择题无 RAG 全层扫描（未使用） |
-| `gradio_demo.py` | 早期 Gradio 演示（选择题 + 自由文本） |
-| `gradio_demo_with_multiturn.py` | 早期 Gradio 多轮对话演示 |
-| `gradio_new.py` | 中间过渡 Gradio 版本 |
-| `generate_evaluation_excel.py` | 生成 Excel 供人工评估（模型未输出，废弃） |
-
-> 这些脚本已不再使用，保留仅作为历史参考。如需运行，请手动移出 `archive/` 目录并注意依赖和环境要求。
+早期实验、临时调试脚本及过渡演示已移至 `code/archive/`，不影响主流程。详细列表见仓库。
 
 ---
 
