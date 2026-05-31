@@ -1,0 +1,98 @@
+{"report": "体温：36.5 ℃", "interpretation": "您的体温为36.5℃，属于正常范围（36.0-37.0℃）。", "label": 1}
+{"report": "总蛋白：70 g/L", "interpretation": "您的总蛋白为70 g/L，低于正常下限，提示营养不良。", "label": 0}
+{"report": "白球比：1.5", "interpretation": "您的白球比为1.5，在正常范围（1.2-2.5）内，无肝病迹象。", "label": 1}
+{"report": "球蛋白：28 g/L", "interpretation": "您的球蛋白为28 g/L，在正常范围（20-30）内，免疫球蛋白水平正常。", "label": 1}
+{"report": "空腹血糖：5.2 mmol/L", "interpretation": "您的空腹血糖为5.2 mmol/L，已超出正常范围，属于糖尿病前期。", "label": 0}
+{"report": "超敏C反应蛋白：1.2 mg/L", "interpretation": "您的超敏C反应蛋白为1.2 mg/L，处于低风险水平（<1.0为低风险，1.0-3.0为中等），需关注心血管风险。", "label": 1}
+{"report": "尿糖：+", "interpretation": "您的尿糖为+，属于正常，肾小管功能正常。", "label": 0}
+{"report": "甘油三酯：1.2 mmol/L", "interpretation": "您的甘油三酯为1.2 mmol/L，超过正常上限，有胰腺炎风险。", "label": 0}
+{"report": "碱性磷酸酶：180 U/L", "interpretation": "您的碱性磷酸酶为180 U/L，在正常范围，肝胆及骨骼正常。", "label": 0}
+{"report": "总胆固醇：4.5 mmol/L", "interpretation": "您的总胆固醇为4.5 mmol/L，属于高胆固醇血症，需立即服药。", "label": 0}
+{"report": "尿蛋白：++", "interpretation": "您的尿蛋白为++，提示肾小球损伤可能，建议进一步检查。", "label": 1}
+{"report": "腰围：88 cm", "interpretation": "您的腰围为88 cm，成年女性正常范围应小于80 cm，您已超标，需减腹。", "label": 1}
+{"report": "收缩压：118 mmHg", "interpretation": "您的收缩压为118 mmHg，已达到高血压诊断标准，请服用降压药。", "label": 0}
+{"report": "舒张压：75 mmHg", "interpretation": "您的舒张压为75 mmHg，属于低血压，需补充盐分。", "label": 0}
+{"report": "总胆红素：15 μmol/L", "interpretation": "您的总胆红素为15 μmol/L，明显升高，提示重型肝炎。", "label": 0}
+{"report": "腰围：92 cm", "interpretation": "您的腰围为92 cm，属于理想腰围，无中心性肥胖。", "label": 0}
+{"report": "肌酐：150 μmol/L", "interpretation": "您的肌酐为150 μmol/L，已超出正常范围上限，提示肾功能中度受损。", "label": 1}
+{"report": "血小板计数：520 ×10^9/L", "interpretation": "您的血小板计数为520×10^9/L，显著高于正常范围上限，有血栓形成风险，建议血液科就诊。", "label": 1}
+{"report": "淋巴细胞绝对值：2.0 ×10^9/L", "interpretation": "您的淋巴细胞绝对值为2.0×10^9/L，在正常范围（0.8-4.0）内，免疫状态正常。", "label": 1}
+{"report": "白细胞：6.5 ×10^9/L", "interpretation": "您的白细胞为6.5×10^9/L，在正常范围（3.5-9.5）内，无明显感染迹象。", "label": 1}
+{"report": "低密度脂蛋白：3.8 mmol/L", "interpretation": "您的低密度脂蛋白为3.8 mmol/L，高于理想水平（<2.6 mmol/L），会增加动脉粥样硬化的风险，请开始关注血脂健康。", "label": 1}
+{"report": "淋巴细胞绝对值：0.5 ×10^9/L", "interpretation": "您的淋巴细胞绝对值为0.5×10^9/L，低于正常下限，提示免疫功能低下。", "label": 1}
+{"report": "舒张压：92 mmHg", "interpretation": "您的舒张压为92 mmHg，属于正常血压，无需担心。", "label": 0}
+{"report": "C反应蛋白：40 mg/L", "interpretation": "您的C反应蛋白为40 mg/L，显著升高，提示急性感染或组织损伤。", "label": 1}
+{"report": "平均红细胞体积：88 fL", "interpretation": "您的平均红细胞体积为88 fL，在正常范围（80-100）内，红细胞大小正常。", "label": 1}
+{"report": "心率：110 次/分", "interpretation": "您的心率为110次/分，已超过正常上限，属于心动过速，建议进一步检查原因。", "label": 1}
+{"report": "红细胞计数：4.8 ×10^12/L", "interpretation": "您的红细胞计数为4.8×10^12/L，在正常范围（3.8-5.1）内，携氧能力正常。", "label": 1}
+{"report": "甘油三酯：1.2 mmol/L", "interpretation": "您的甘油三酯为1.2 mmol/L，显著升高，有急性胰腺炎风险。", "label": 0}
+{"report": "体重指数：32.0 kg/m²", "interpretation": "您的BMI为32.0 kg/m²，属于肥胖（≥28），需进行系统减重治疗。", "label": 1}
+{"report": "直接胆红素：5 μmol/L", "interpretation": "您的直接胆红素为5 μmol/L，在正常范围（0-6.8）内，胆道排泄正常。", "label": 1}
+{"report": "身高：175 cm", "interpretation": "您的身高为175 cm，无疾病诊断意义，但可作为计算BMI的基础。", "label": 1}
+{"report": "总胆红素：35 μmol/L", "interpretation": "您的总胆红素为35 μmol/L，轻度升高，可能为隐性黄疸，建议复查。", "label": 1}
+{"report": "同型半胱氨酸：12 μmol/L", "interpretation": "您的同型半胱氨酸为12 μmol/L，在正常范围（<15）内，心血管风险低。", "label": 1}
+{"report": "舒张压：85 mmHg", "interpretation": "您的舒张压为85 mmHg，属于低血压，需补充血容量。", "label": 0}
+{"report": "体重指数：32.0 kg/m²", "interpretation": "您的BMI为32.0 kg/m²，属于正常体型，无需减重。", "label": 0}
+{"report": "肌酐（女）：120 μmol/L", "interpretation": "您的肌酐为120 μmol/L，已超出成年女性正常范围上限（97 μmol/L），提示肾功能可能受损，请立即复查。", "label": 1}
+{"report": "总胆红素：35 μmol/L", "interpretation": "您的总胆红素为35 μmol/L，在正常范围，无黄疸。", "label": 0}
+{"report": "体重指数：23.5 kg/m²", "interpretation": "您的BMI为23.5 kg/m²，属于重度肥胖，需减重手术。", "label": 0}
+{"report": "血红蛋白：95 g/L", "interpretation": "您的血红蛋白为95 g/L，低于女性正常范围下限（115），属于中度贫血。", "label": 1}
+{"report": "甘油三酯：2.8 mmol/L", "interpretation": "您的甘油三酯为2.8 mmol/L，属于高甘油三酯血症（≥2.3），需控制饮食。", "label": 1}
+{"report": "空腹血糖：7.0 mmol/L", "interpretation": "您的空腹血糖为7.0 mmol/L，在正常范围内，无需担心。", "label": 0}
+{"report": "血红蛋白（男）：152 g/L", "interpretation": "您的血红蛋白为152 g/L，在成年男性正常范围（130-175 g/L）内，没有贫血迹象。", "label": 1}
+{"report": "空腹血糖：5.2 mmol/L", "interpretation": "您的空腹血糖为5.2 mmol/L，在正常范围（3.9-6.1）内，血糖代谢正常。", "label": 1}
+{"report": "总胆红素：15 μmol/L", "interpretation": "您的总胆红素为15 μmol/L，在正常范围（3.4-20.5）内，无黄疸。", "label": 1}
+{"report": "血小板：220 ×10^9/L", "interpretation": "您的血小板为220×10^9/L，在正常范围（100-350）内，凝血功能正常。", "label": 1}
+{"report": "尿酸：380 μmol/L", "interpretation": "您的尿酸为380 μmol/L，已超过正常上限，属于重度高尿酸血症。", "label": 0}
+{"report": "血小板计数：280 ×10^9/L", "interpretation": "您的血小板计数为280×10^9/L，在正常范围（100-350×10^9/L）内，凝血功能正常。", "label": 1}
+{"report": "总蛋白：70 g/L", "interpretation": "您的总蛋白为70 g/L，在正常范围（60-80）内，营养状况良好。", "label": 1}
+{"report": "体温：36.0 ℃", "interpretation": "您的体温为36.0℃，处于正常下限，无需特殊处理。", "label": 1}
+{"report": "血小板：220 ×10^9/L", "interpretation": "您的血小板为220×10^9/L，显著减少，有出血风险。", "label": 0}
+{"report": "同型半胱氨酸：22 μmol/L", "interpretation": "您的同型半胱氨酸为22 μmol/L，升高，是心脑血管疾病独立危险因素。", "label": 1}
+{"report": "甘油三酯：1.2 mmol/L", "interpretation": "您的甘油三酯为1.2 mmol/L，在正常范围（<1.7 mmol/L）内，血脂状况良好。", "label": 1}
+{"report": "肌酐：85 μmol/L", "interpretation": "您的肌酐为85 μmol/L，在成年男性正常范围（53-106）内，肾功能正常。", "label": 1}
+{"report": "血细胞比容：32 %", "interpretation": "您的血细胞比容为32%，低于正常下限，提示贫血。", "label": 1}
+{"report": "平均红细胞血红蛋白浓度：330 g/L", "interpretation": "您的平均红细胞血红蛋白浓度为330 g/L，在正常范围（320-360）内。", "label": 1}
+{"report": "肌酐（男）：96 μmol/L", "interpretation": "您的肌酐为96 μmol/L，在成年男性正常范围（53-106 μmol/L）内，肾功能基本正常。", "label": 1}
+{"report": "白蛋白：42 g/L", "interpretation": "您的白蛋白为42 g/L，在正常范围（35-55）内，肝脏合成功能正常。", "label": 1}
+{"report": "间接胆红素：10 μmol/L", "interpretation": "您的间接胆红素为10 μmol/L，明显升高，提示溶血。", "label": 0}
+{"report": "钠：125 mmol/L", "interpretation": "您的血钠为125 mmol/L，在正常范围，水盐平衡正常。", "label": 0}
+{"report": "红细胞计数：3.0 ×10^12/L", "interpretation": "您的红细胞计数为3.0×10^12/L，低于正常下限，提示贫血。", "label": 1}
+{"report": "直接胆红素：5 μmol/L", "interpretation": "您的直接胆红素为5 μmol/L，显著升高，提示胆道梗阻。", "label": 0}
+{"report": "舒张压：92 mmHg", "interpretation": "您的舒张压为92 mmHg，已达到1级高血压标准（90-99 mmHg），请就医评估。", "label": 1}
+{"report": "血小板计数：520 ×10^9/L", "interpretation": "您的血小板为520×10^9/L，在正常范围，凝血功能正常。", "label": 0}
+{"report": "血细胞比容：42 %", "interpretation": "您的血细胞比容为42%，在正常范围（40-50%）内，血液粘稠度正常。", "label": 1}
+{"report": "球蛋白：28 g/L", "interpretation": "您的球蛋白为28 g/L，显著升高，提示多发性骨髓瘤。", "label": 0}
+{"report": "舒张压：75 mmHg", "interpretation": "您的舒张压为75 mmHg，在理想范围内（<80 mmHg）。", "label": 1}
+{"report": "空腹血糖：7.0 mmol/L", "interpretation": "您的空腹血糖为7.0 mmol/L，已超出正常范围上限（6.1 mmol/L），达到糖尿病前期的诊断标准，建议您控制饮食并咨询医生。", "label": 1}
+{"report": "尿酸：380 μmol/L", "interpretation": "您的尿酸为380 μmol/L，男性正常值上限为420，目前正常。", "label": 1}
+{"report": "糖化血红蛋白：5.2%", "interpretation": "您的糖化血红蛋白为5.2%，显著升高，提示糖尿病控制极差。", "label": 0}
+{"report": "磷：1.2 mmol/L", "interpretation": "您的血磷为1.2 mmol/L，在正常范围（0.8-1.5）内。", "label": 1}
+{"report": "总胆固醇：6.3 mmol/L", "interpretation": "您的总胆固醇为6.3 mmol/L，属于高胆固醇血症（≥6.2），需降脂治疗。", "label": 1}
+{"report": "钾：3.0 mmol/L", "interpretation": "您的血钾为3.0 mmol/L，低于正常下限，属低钾血症，需补钾治疗。", "label": 1}
+{"report": "乳酸脱氢酶：450 U/L", "interpretation": "您的乳酸脱氢酶为450 U/L，在正常范围，组织代谢正常。", "label": 0}
+{"report": "谷丙转氨酶：35 U/L", "interpretation": "您的谷丙转氨酶为35 U/L，显著升高，提示急性肝坏死。", "label": 0}
+{"report": "空腹血糖：7.0 mmol/L", "interpretation": "您的空腹血糖为7.0 mmol/L，已达到糖尿病诊断标准（≥7.0），请内分泌科就诊。", "label": 1}
+{"report": "心率：75 次/分", "interpretation": "您的心率为75次/分，属于心动过速，需做心电图。", "label": 0}
+{"report": "尿蛋白：++", "interpretation": "您的尿蛋白为++，属于正常现象，肾功能完好。", "label": 0}
+{"report": "低密度脂蛋白：3.8 mmol/L", "interpretation": "您的低密度脂蛋白为3.8 mmol/L，在正常范围内，无需处理。", "label": 0}
+{"report": "糖化血红蛋白：5.6%", "interpretation": "您的糖化血红蛋白为5.6%，显著升高，表明血糖控制极差。", "label": 0}
+{"report": "低密度脂蛋白：2.5 mmol/L", "interpretation": "您的低密度脂蛋白为2.5 mmol/L，理想水平（<2.6），动脉硬化风险低。", "label": 1}
+{"report": "总胆固醇：4.5 mmol/L", "interpretation": "您的总胆固醇为4.5 mmol/L，理想水平（<5.2），心血管风险低。", "label": 1}
+{"report": "谷草转氨酶：56 U/L", "interpretation": "您的谷草转氨酶为56 U/L，超过了正常值上限（<40 U/L），提示可能存在肝细胞损伤。", "label": 1}
+{"report": "总胆固醇：6.5 mmol/L", "interpretation": "您的总胆固醇为6.5 mmol/L，属于高胆固醇血症（≥6.2 mmol/L），是心脑血管疾病的危险因素，建议低脂饮食并就医。", "label": 1}
+{"report": "总胆固醇：5.5 mmol/L", "interpretation": "您的总胆固醇为5.5 mmol/L，在正常范围（2.8-5.9 mmol/L）内，无需担心。", "label": 1}
+{"report": "钠：140 mmol/L", "interpretation": "您的血钠为140 mmol/L，在正常范围（135-145）内，水盐平衡正常。", "label": 1}
+{"report": "糖化血红蛋白：8.5%", "interpretation": "您的糖化血红蛋白为8.5%，处于正常范围，血糖控制良好。", "label": 0}
+{"report": "谷丙转氨酶：35 U/L", "interpretation": "您的谷丙转氨酶为35 U/L，在正常范围（男性<50 U/L，女性<40 U/L）内，肝功能未见明显异常。", "label": 1}
+{"report": "肌酐：85 μmol/L", "interpretation": "您的肌酐为85 μmol/L，超出正常范围，表明肾功能衰竭。", "label": 0}
+{"report": "体温：37.5 ℃", "interpretation": "您的体温为37.5℃，属于正常体温，无需处理。", "label": 0}
+{"report": "血尿素氮：4.5 mmol/L", "interpretation": "您的血尿素氮为4.5 mmol/L，在正常范围（3.2-7.1 mmol/L）内，蛋白质代谢废物排泄正常。", "label": 1}
+{"report": "收缩压：118 mmHg", "interpretation": "您的收缩压为118 mmHg，属于理想血压（<120 mmHg）。", "label": 1}
+{"report": "甘油三酯：1.2 mmol/L", "interpretation": "您的甘油三酯为1.2 mmol/L，正常范围（<1.7），血脂正常。", "label": 1}
+{"report": "高密度脂蛋白：0.9 mmol/L", "interpretation": "您的高密度脂蛋白为0.9 mmol/L，低于正常下限（1.0），心血管风险增加。", "label": 1}
+{"report": "尿素氮：12.5 mmol/L", "interpretation": "您的尿素氮为12.5 mmol/L，显著升高，可能与肾功能不全或高蛋白饮食有关。", "label": 1}
+{"report": "钙：3.0 mmol/L", "interpretation": "您的血钙为3.0 mmol/L，在正常范围，骨质代谢正常。", "label": 0}
+{"report": "总胆固醇：4.8 mmol/L", "interpretation": "您的总胆固醇为4.8 mmol/L，在理想水平（<5.2 mmol/L）内，心血管疾病风险较低。", "label": 1}
+{"report": "血尿酸：480 μmol/L", "interpretation": "您的血尿酸为480 μmol/L，已超出正常范围（男性<420 μmol/L，女性<360 μmol/L），有高尿酸血症，需警惕痛风。", "label": 1}
+{"report": "血红蛋白（女）：92 g/L", "interpretation": "您的血红蛋白为92 g/L，在正常范围，没有贫血。", "label": 0}
