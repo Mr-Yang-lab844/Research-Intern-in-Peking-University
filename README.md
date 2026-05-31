@@ -1,4 +1,3 @@
-```markdown
 # 面向事实性幻觉检测的医学报告解读助手
 
 基于 **Llama-3.1-8B-Instruct** 和 **稀疏自编码器 (Sparse Autoencoder, SAE)** 的医学问答事实性幻觉检测系统。  
